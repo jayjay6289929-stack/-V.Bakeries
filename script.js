@@ -220,3 +220,36 @@ slides[currentSlide].classList.add("active");
 },3500);
 
 }
+
+const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+
+    contactForm.addEventListener("submit", function(e) {
+
+        e.preventDefault();
+
+        const name = document.getElementById("contactName").value;
+        const email = document.getElementById("contactEmail").value;
+        const phone = document.getElementById("contactPhone").value;
+        const message = document.getElementById("contactMessage").value;
+
+        const bakeryPhone = "2349050967182";
+
+        let whatsappMessage =
+`🧁 *NEW CUSTOMER MESSAGE*%0A%0A` +
+`👤 Name: ${name}%0A` +
+`📧 Email: ${email}%0A` +
+`📞 Phone: ${phone}%0A%0A` +
+`💬 Message:%0A${message}`;
+
+        window.open(
+            `https://wa.me/${bakeryPhone}?text=${whatsappMessage}`,
+            "_blank"
+        );
+
+        contactForm.reset();
+
+    });
+
+}
