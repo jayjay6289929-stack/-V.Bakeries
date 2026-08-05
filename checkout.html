@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | V.Bakeries</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+
+<nav class="navbar">
+
+<a href="index.html" class="logo">
+
+<img src="asset/logo/logo.png">
+
+<span>V.Bakeries</span>
+
+</a>
+
+</nav>
+
+</header>
+
+   <section class="checkout-page">
+
+    <div class="checkout-wrapper">
+
+    <h1 class="checkout-title">Secure Checkout</h1>
+
+    <a href="index.html" class="back-shopping">
+    
+
+            ← Continue Shopping
+
+   </a>
+
+    <!-- ORDER -->
+
+    <div class="checkout-order">
+
+        <h2>Your Order</h2>
+
+        <div id="checkoutItems"></div>
+
+        <div class="order-summary">
+
+            <div class="summary-row">
+
+                <span>Subtotal</span>
+
+                <span id="checkoutSubtotal">₦0</span>
+
+            </div>
+
+            <div class="summary-row">
+
+                <span>Delivery Fee</span>
+                <span>₦3,000</span>
+
+            </div>
+
+            <hr>
+
+            <div class="summary-row grand-total">
+
+                <span>Grand Total</span>
+
+                <span id="checkoutTotal">₦0</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- DELIVERY -->
+
+    <div class="checkout-form">
+
+        <h2>Delivery Details</h2>
+
+        <form id="checkoutForm">
+
+            <input
+                type="text"
+                id="customerName"
+                placeholder="👤 Full Name"
+                required>
+
+            <input
+                type="tel"
+                id="customerPhone"
+                placeholder="📞 Phone Number"
+                required>
+
+            <textarea
+                id="customerAddress"
+                placeholder="📍 Delivery Address"
+                required></textarea>
+
+            <input
+                type="date"
+                id="deliveryDate"
+                required>
+
+            <textarea
+                id="customerNote"
+                placeholder="📝 Special Instructions (Optional)"></textarea>
+
+            <button
+                type="submit"
+                class="primary-btn">
+
+                Proceed to WhatsApp →
+
+            </button>
+
+        </form>
+
+    </div>
+
+  </div>
+
+</section>
+
+<script src="checkout.js"></script>
+
+</body>
+
+</html>

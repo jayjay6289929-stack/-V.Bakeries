@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>French Brioche Bread | V.Bakeries</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+ <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+ <nav class="navbar">
+
+    <a href="index.html" class="logo">
+        <img src="asset/logo/logo.png" alt="V.Bakeries">
+        <span>V.Bakeries</span>
+    </a>
+
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cakes.html">Cakes</a></li>
+        <li><a href="bread.html">Bread</a></li>
+        <li><a href="pastries.html">Pastries</a></li>
+        <li><a href="cupcakes.html">Cupcakes</a></li>
+        <li><a href="cookies.html">Cookies</a></li>
+    </ul>
+
+    <div class="nav-actions">
+
+        <div class="cart-icon">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cart-count">0</span>
+        </div>
+
+        <a href="contact.html" class="order-btn">
+            Order Now
+        </a>
+
+    </div>
+
+</nav>
+
+</header>
+
+<section class="product-section">
+
+<div class="product-image">
+
+<img src="asset/images/bread/brioche-bread.jpg" alt="French Brioche Bread">
+
+</div>
+
+<div class="product-content">
+
+<span>RICH & BUTTERY</span>
+
+<h1>French Brioche Bread</h1>
+
+<div class="product-rating">
+
+★★★★★
+
+</div>
+
+<div class="product-price">
+
+₦8,500
+
+</div>
+
+<p>
+
+Our French Brioche Bread is handcrafted with fresh butter, eggs and premium flour to create an incredibly soft, rich and fluffy loaf. Perfect for breakfast, French toast, gourmet sandwiches or served warm with your favourite spread.
+
+</p>
+
+<h3>Available Sizes</h3>
+
+<ul>
+
+<li>Medium Loaf</li>
+
+<li>Large Loaf</li>
+
+</ul>
+
+<h3>Ingredients</h3>
+
+<ul>
+
+<li>Premium Wheat Flour</li>
+
+<li>Fresh Butter</li>
+
+<li>Farm Eggs</li>
+
+<li>Fresh Milk</li>
+
+<li>Natural Yeast</li>
+
+<li>Sea Salt</li>
+
+</ul>
+
+<button
+    class="primary-btn add-to-cart"
+    data-name="Brioche Bread"
+    data-price="7500"
+    data-image="asset/images/bread/brioche-bread.jpg">
+
+    Order Now
+
+</button>
+
+<a href="bread.html" class="secondary-btn">
+
+← Back to Bread
+
+</a>
+
+</div>
+
+</section>
+
+<!-- ================= YOU MAY ALSO LIKE ================= -->
+
+<section class="signature-cakes">
+
+<div class="section-title">
+
+<span>YOU MAY ALSO LIKE</span>
+
+<h2>More Fresh Bread</h2>
+
+</div>
+
+<div class="cake-grid">
+
+<div class="cake-card">
+
+<img src="asset/images/bread/artisan-bread.jpg" alt="Artisan White Bread">
+
+<div class="cake-details">
+
+<h3>Artisan White Bread</h3>
+
+<span>₦6,500</span>
+
+<a href="product-artisan-bread.html" class="primary-btn">
+
+View Details
+
+</a>
+
+</div>
+
+</div>
+
+<div class="cake-card">
+
+<img src="asset/images/bread/sourdough.jpg" alt="Classic Sourdough">
+
+<div class="cake-details">
+
+<h3>Classic Sourdough</h3>
+
+<span>₦7,000</span>
+
+<a href="product-sourdough.html" class="primary-btn">
+
+View Details
+
+</a>
+
+</div>
+
+</div>
+
+<div class="cake-card">
+
+<img src="asset/images/bread/garlic-bread.jpg" alt="Garlic Herb Bread">
+
+<div class="cake-details">
+
+<h3>Garlic Herb Bread</h3>
+
+<span>₦8,000</span>
+
+<a href="product-garlic-bread.html" class="primary-btn">
+
+View Details
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+ <!-- ================= SHOPPING CART ================= -->
+
+<div class="cart-sidebar" id="cartSidebar">
+
+    <div class="cart-header">
+        <h2>🛒 Shopping Cart</h2>
+        <span id="closeCart">&times;</span>
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-footer">
+        <h3>Total: <span id="cartTotal">₦0</span></h3>
+
+        <button class="checkout-btn" id="checkoutBtn">
+            Proceed to Checkout
+        </button>
+    </div>
+
+</div>
+
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<!-- Toast Notification -->
+
+<div id="toast">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastMessage"></span>
+</div>
+
+ <footer class="footer">
+
+    <div class="footer-container">
+
+        <!-- Brand -->
+
+        <div class="footer-column">
+
+            <img src="asset/logo/logo.png" alt="V.Bakeries Logo" class="footer-logo">
+
+            <h3>V.Bakeries</h3>
+
+            <p>
+                Luxury Cakes, Artisan Bread, Premium Pastries and
+                handcrafted desserts made fresh every day.
+            </p>
+
+        </div>
+
+        <!-- Quick Links -->
+
+        <div class="footer-column">
+
+            <h4>Quick Links</h4>
+
+            <ul>
+
+                <li><a href="index.html">Home</a></li>
+
+                <li><a href="cakes.html">Cakes</a></li>
+
+                <li><a href="bread.html">Bread</a></li>
+
+                <li><a href="pastries.html">Pastries</a></li>
+
+                <li><a href="cupcakes.html">Cupcakes</a></li>
+
+                <li><a href="cookies.html">Cookies</a></li>
+
+            </ul>
+
+        </div>
+
+        <!-- Contact -->
+
+        <div class="footer-column">
+
+            <h4>Contact</h4>
+
+            <p> 
+
+
+            </p>
+                   <a href="https://maps.google.com/?q=Ibadan,Oyo,Nigeria" target="_blank">
+                            Ibadan, Oyo State, Nigeria
+                            </a>
+            <p>
+
+            </p>
+                 <a href="tel:+2349050967182">
+                       +234 905 096 7182
+                     </a>
+             <p>
+                <a href="mailto:vbakeries8@gmail.com">
+                          vbakeries8@gmail.com
+                        </a>
+             </p>
+
+        </div>
+
+        <!-- Social -->
+
+        <div class="footer-column">
+
+            <h4>Follow Us</h4>
+
+            <div class="footer-social">
+
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+
+                <a href="#"><i class="fab fa-instagram"></i></a>
+
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+
+            </div>
+
+            <h4 class="footer-hours-title">Opening Hours</h4>
+
+            <p>Mon – Sat</p>
+
+            <p>8:00 AM – 8:00 PM</p>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        © 2026 V.Bakeries. All Rights Reserved.
+
+    </div>
+
+</footer>
+
+<script src="cart.js"></script>
+
+</body>
+
+</html>
