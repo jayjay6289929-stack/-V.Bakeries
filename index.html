@@ -53,71 +53,57 @@
 
     <nav class="navbar">
 
-        <a href="#home" class="logo">
+    <a href="#home" class="logo">
+        <img src="asset/logo/logo.png" alt="V.Bakeries Logo">
+        <span>V.Bakeries</span>
+    </a>
 
-            <img src="asset/logo/logo.png" alt="V.Bakeries Logo">
+    <ul class="nav-links" id="navLinks">
 
-            <span>V.Bakeries</span>
+        <li><a href="#home">Home</a></li>
 
-        </a>
+        <li class="dropdown">
+            <a href="#">Menu <i class="fa-solid fa-chevron-down"></i></a>
 
-        <ul class="nav-links">
+            <ul class="dropdown-menu">
+                <li><a href="cakes.html">🎂 Cakes</a></li>
+                <li><a href="bread.html">🍞 Bread</a></li>
+                <li><a href="pastries.html">🥐 Pastries</a></li>
+                <li><a href="cupcakes.html">🧁 Cupcakes</a></li>
+                <li><a href="cookies.html">🍪 Cookies</a></li>
+            </ul>
 
-            <li><a href="#home">Home</a></li>
+        </li>
 
-            <li class="dropdown">
+        <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
 
-                <a href="#">Menu <i class="fa-solid fa-chevron-down"></i></a>
+    </ul>
 
-                <ul class="dropdown-menu">
+    <div class="nav-actions">
 
-                    <li><a href="cakes.html">🎂 Cakes</a></li>
-                    <li><a href="bread.html">🍞 Bread</a></li>
-                    <li><a href="pastries.html">🥐 Pastries</a></li>
-                    <li><a href="cupcakes.html">🧁 Cupcakes</a></li>
-                    <li><a href="cookies.html">🍪 Cookies</a></li>
-
-                </ul>
-
-            </li>
-
-            <li><a href="#about">About</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#contact">Contact</a></li>
-
-        </ul>
-
-        <div class="nav-actions">
-         <div class="search-box">
-
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Search products...">
-
-           <i class="fa-solid fa-magnifying-glass"></i>
-           <div class="search-results" id="searchResults"></div>
-
-        </div>
-              
-
-            <div class="cart-icon">
-
-                <i class="fa-solid fa-cart-shopping"></i>
-
-                <span id="cart-count">0</span>
-
-            </div>
-
-            <a href="#contact" class="order-btn">
-
-                Order Now
-
-            </a>
-
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search products...">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <div class="search-results" id="searchResults"></div>
         </div>
 
-    </nav>
+        <div class="cart-icon">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cart-count">0</span>
+        </div>
+
+        <a href="#contact" class="order-btn">Order Now</a>
+
+        <!-- Mobile Only -->
+        <div class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+    </div>
+
+  </nav>
 
 </header>
 
@@ -452,7 +438,7 @@
             <button
                 class="cart-btn add-to-cart"
                 data-name="Fresh Strawberry Cake"
-                data-price="90,000"
+                data-price="90000"
                 data-image="asset/images/cakes/strawberry-cake.jpg">
 
                 Add to Cart
@@ -485,7 +471,7 @@
                 class="cart-btn add-to-cart"
                 data-name="Black Forest Cake"
                 data-price="92000"
-                data-image="asset/images/cakes/black-forestCakeF.jpg">
+                data-image="asset/images/cakes/black-forestCake.jpg">
                 Add to Cart
 
             </button>

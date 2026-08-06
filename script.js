@@ -253,3 +253,24 @@ if (contactForm) {
     });
 
 }
+
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", () => {
+
+    navLinks.classList.toggle("active");
+
+    if(navLinks.classList.contains("active")){
+
+        menuToggle.innerHTML =
+        '<i class="fa-solid fa-xmark"></i>';
+
+    }else{
+
+        menuToggle.innerHTML =
+        '<i class="fa-solid fa-bars"></i>';
+
+    }
+
+});
