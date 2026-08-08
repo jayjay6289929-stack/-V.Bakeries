@@ -3690,4 +3690,39 @@ opacity:1;
 
 }
 
+/* ================= CONTACT CARD (FIX OVERFLOW) ================= */
+
+.contact-card{
+
+    gap:14px;
+    padding:18px;
+
+}
+
+.contact-card > div{
+
+    flex:1;
+    min-width:0;
+
+}
+
+.contact-card h3{
+
+    font-size:1.05rem;
+
+}
+
+.contact-card p{
+
+    font-size:.9rem;
+    word-break:break-word;
+
+}
+
+.contact-form{
+
+    padding-bottom:90px;
+
+}
+
 }
