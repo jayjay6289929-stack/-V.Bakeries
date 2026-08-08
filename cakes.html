@@ -32,7 +32,7 @@
         <span>V.Bakeries</span>
     </a>
 
-    <ul class="nav-links">
+    <ul class="nav-links"  id="navLinks">
         <li><a href="index.html">Home</a></li>
         <li><a href="cakes.html">Cakes</a></li>
         <li><a href="bread.html">Bread</a></li>
@@ -43,7 +43,7 @@
 
     <div class="nav-actions">
 
-        <div class="cart-icon">
+        <div class="cart-icon" role="button" tabindex="0" aria-label="View cart">
             <i class="fa-solid fa-cart-shopping"></i>
             <span id="cart-count">0</span>
         </div>
@@ -51,6 +51,9 @@
         <a href="index.html#contact" class="order-btn">
             Order Now
         </a>
+         <div class="menu-toggle" id="menuToggle" role="button" tabindex="0" aria-label="Toggle menu" aria-expanded="false">
+               <i class="fa-solid fa-bars"></i>
+        </div>
 
     </div>
 
@@ -276,7 +279,7 @@
                     Fresh strawberry sponge finished with whipped cream.
                 </p>
 
-                < <span class="cake-price">₦90,000</span>
+                <span class="cake-price">₦90,000</span>
 
 <div class="product-buttons">
 
@@ -392,7 +395,7 @@
 
         <h2>🛒 Shopping Cart</h2>
 
-        <span id="closeCart">&times;</span>
+        <span id="closeCart" role="button" tabindex="0" aria-label="Close cart">&times;</span>
 
     </div>
 
@@ -507,7 +510,7 @@
 
             <div class="footer-social">
 
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/2349050967182" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
                 <a href="#"><i class="fab fa-instagram"></i></a>
 

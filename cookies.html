@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -31,7 +31,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         <span>V.Bakeries</span>
     </a>
 
-    <ul class="nav-links">
+    <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
         <li><a href="cakes.html">Cakes</a></li>
         <li><a href="bread.html">Bread</a></li>
@@ -42,7 +42,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
 
     <div class="nav-actions">
 
-        <div class="cart-icon">
+        <div class="cart-icon" role="button" tabindex="0" aria-label="View cart">
             <i class="fa-solid fa-cart-shopping"></i>
             <span id="cart-count">0</span>
         </div>
@@ -50,6 +50,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         <a href="index.html#contact" class="order-btn">
             Order Now
         </a>
+         <div class="menu-toggle" id="menuToggle" role="button" tabindex="0" aria-label="Toggle menu" aria-expanded="false">
+               <i class="fa-solid fa-bars"></i>
+        </div>
 
     </div>
 
@@ -393,7 +396,7 @@ discover our handcrafted gourmet cookies.
 
         <h2>🛒 Shopping Cart</h2>
 
-        <span id="closeCart">&times;</span>
+        <span id="closeCart" role="button" tabindex="0" aria-label="Close cart">&times;</span>
 
     </div>
 
@@ -509,7 +512,7 @@ discover our handcrafted gourmet cookies.
 
             <div class="footer-social">
 
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/2349050967182" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
                 <a href="#"><i class="fab fa-instagram"></i></a>
 

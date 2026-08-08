@@ -1,402 +1,356 @@
- /* ==========================================
-   V.Bakeries JavaScript
-========================================== */
+ // Gallery Lightbox
 
-const navbar = document.querySelector("header");
+const galleryImages = document.querySelectorAll(".gallery-grid img");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+const closeLightbox = document.querySelector(".close-lightbox");
 
-window.addEventListener("scroll", () => {
+ if (galleryImages.length && lightbox && lightboxImg) {
 
-    if (window.scrollY > 80) {
+    galleryImages.forEach(img => {
+        img.addEventListener("click", () => {
 
-        navbar.style.background = "#ffffff";
-        navbar.style.boxShadow = "0 10px 30px rgba(0,0,0,.08)";
+            const card = img.closest(".gallery-item");
+            const isTouch = window.matchMedia("(hover: none)").matches;
 
-    } else {
+            if (isTouch && card && !card.classList.contains("active")) {
+                return;
+            }
 
-        navbar.style.background = "rgba(255,255,255,.92)";
-        navbar.style.boxShadow = "none";
+            lightbox.style.display = "flex";
+            lightboxImg.src = img.src;
+        });
+    });
 
-    }
+}
+
+ if (closeLightbox && lightbox) {
+
+    closeLightbox.addEventListener("click", () => {
+        lightbox.style.display = "none";
+    });
+
+    lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+            lightbox.style.display = "none";
+        }
+    });
+
+}
+
+// ==========================
+// Scroll Reveal Animation
+// ==========================
+
+const reveals = document.querySelectorAll(
+".hero, .menu-section, .products-section, .bakery-story, .gallery, .contact"
+);
+
+function revealOnScroll(){
+
+    const trigger =  window.innerHeight * 0.5;
+
+    reveals.forEach(section=>{
+
+        const top = section.getBoundingClientRect().top;
+
+        if(top < trigger){
+
+            section.classList.add("active");
+
+        }
+
+    });
+
+}
+
+reveals.forEach(section=>{
+
+    section.classList.add("reveal");
 
 });
 
+window.addEventListener("scroll", revealOnScroll);
 
-/* ==========================================
-   SMOOTH SCROLL
-========================================== */
+revealOnScroll();
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+window.addEventListener("load",()=>{
 
-    anchor.addEventListener("click", function (e) {
+    setTimeout(()=>{
+
+        document.getElementById("loader")?.classList.add("hidden");
+
+    },1800);
+
+});
+
+// ==========================
+// Product Search
+// ==========================
+ const searchInput = document.getElementById("searchInput");
+const searchResults = document.getElementById("searchResults");
+
+if(searchInput){
+
+const products=[
+
+{name:"Chocolate Cake",page:"product-chocolate.html"},
+{name:"Classic Vanilla Cake",page:"product-vanilla.html"},
+{name:"Strawberry Delight",page:"product-strawberry.html"},
+{name:"Black Forest Cake",page:"product-black-forest.html"},
+{name:"Red Velvet Cake",page:"product-red-velvet.html"},
+{name:"Wedding Cake",page:"product-wedding.html"},
+
+{name:"Artisan Bread",page:"product-artisan-bread.html"},
+{name:"French Baguette",page:"product-baguette.html"},
+{name:"Brioche Bread",page:"product-brioche-bread.html"},
+{name:"Multigrain Bread",page:"product-multigrain.html"},
+{name:"Garlic Bread",page:"product-garlic-bread.html"},
+{name:"Sourdough Bread",page:"product-sourdough.html"},
+
+{name:"Croissant",page:"product-croissant.html"},
+{name:"Danish Pastry",page:"product-danish.html"},
+{name:"Pain au Chocolat",page:"product-pain-au-chocolat.html"},
+{name:"Cinnamon Roll",page:"product-cinnamon-roll.html"},
+{name:"Fruit Tart",page:"product-fruit-tart.html"},
+{name:"Puff Pastry",page:"product-puff-pastry.html"},
+
+{name:"Chocolate Cupcake",page:"product-chocolate-cupcake.html"},
+{name:"Vanilla Cupcake",page:"product-vanilla-cupcake.html"},
+{name:"Oreo Cupcake",page:"product-oreo-cupcake.html"},
+{name:"Strawberry Cupcake",page:"product-strawberry-cupcake.html"},
+{name:"Red Velvet Cupcake",page:"product-red-velvet-cupcake.html"},
+{name:"Salted Caramel Cupcake",page:"product-salted-caramel-cupcake.html"},
+
+{name:"Chocolate Chip Cookie",page:"product-chocolate-chip-cookie.html"},
+{name:"Double Chocolate Cookie",page:"product-double-chocolate-cookie.html"},
+{name:"Butter Shortbread Cookie",page:"product-butter-shortbread-cookie.html"},
+{name:"Oreo Cookie",page:"product-oreo-cookie.html"},
+{name:"Red Velvet Cookie",page:"product-red-velvet-cookie.html"},
+{name:"Peanut Butter Cookie",page:"product-peanut-butter-cookie.html"}
+
+];
+
+searchInput.addEventListener("input",()=>{
+
+const value=searchInput.value.toLowerCase();
+
+searchResults.innerHTML="";
+
+if(value===""){
+
+searchResults.style.display="none";
+
+return;
+
+}
+
+const matches=products.filter(product=>
+
+product.name.toLowerCase().includes(value)
+
+);
+
+matches.forEach(product=>{
+
+searchResults.innerHTML+=`
+
+<div class="search-result"
+
+onclick="window.location.href='${product.page}'">
+
+${product.name}
+
+</div>
+
+`;
+
+});
+
+searchResults.style.display=
+
+matches.length?"block":"none";
+
+});
+
+document.addEventListener("click",(e)=>{
+
+if(!e.target.closest(".search-box")){
+
+searchResults.style.display="none";
+
+}
+
+});
+
+searchInput.addEventListener("keydown", function(e){
+
+    if(e.key === "Enter"){
 
         e.preventDefault();
 
-        const target = document.querySelector(this.getAttribute("href"));
+        const query = searchInput.value.trim().toLowerCase();
 
-        if (target) {
+        const result = products.find(product =>
+            product.name.toLowerCase().includes(query)
+        );
 
-            target.scrollIntoView({
+        if(result){
 
-                behavior: "smooth"
-
-            });
-
-        }
-
-    });
-
-});
-
-
-/* ==========================================
-   PRODUCT FILTER
-========================================== */
-
-const filterButtons = document.querySelectorAll(".filter-btn");
-
-filterButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        filterButtons.forEach(btn => {
-
-            btn.classList.remove("active");
-
-        });
-
-        button.classList.add("active");
-
-    });
-
-});
-
-
-/* ==========================================
-   SEARCH BUTTON
-========================================== */
-
-const searchBtn = document.querySelector(".search-btn");
-
-searchBtn.addEventListener("click", () => {
-
-    const keyword = prompt("Search our bakery menu");
-
-    if (keyword) {
-
-        alert("Searching for: " + keyword);
-
-    }
-
-});
-
-
-/* ==========================================
-   HERO IMAGE FLOAT
-========================================== */
-
-const heroImage = document.querySelector(".hero-right img");
-
-window.addEventListener("mousemove", e => {
-
-    let x = (window.innerWidth - e.pageX) / 120;
-
-    let y = (window.innerHeight - e.pageY) / 120;
-
-    heroImage.style.transform = `translate(${x}px,${y}px)`;
-
-});
-
-
-/* ==========================================
-   SCROLL ANIMATION
-========================================== */
-
-const observer = new IntersectionObserver(entries => {
-
-    entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-
-            entry.target.classList.add("show");
-
-        }
-
-    });
-
-}, {
-
-    threshold: .2
-
-});
-
-document.querySelectorAll(".category-card,.product-card,.why-card,.testimonial-card,.feature")
-.forEach(el => {
-
-    observer.observe(el);
-
-});
-
-
-/* ==========================================
-   BACK TO TOP BUTTON
-========================================== */
-
-const topButton = document.createElement("button");
-
-topButton.innerHTML = "↑";
-
-topButton.className = "top-btn";
-
-document.body.appendChild(topButton);
-
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 500) {
-
-        topButton.style.display = "flex";
-
-    } else {
-
-        topButton.style.display = "none";
-
-    }
-
-});
-
-topButton.addEventListener("click", () => {
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
-
-});
-
-
-/* ==========================================
-   TOP BUTTON STYLE
-========================================== */
-
-topButton.style.position = "fixed";
-
-topButton.style.bottom = "30px";
-
-topButton.style.right = "30px";
-
-topButton.style.width = "55px";
-
-topButton.style.height = "55px";
-
-topButton.style.borderRadius = "50%";
-
-topButton.style.border = "none";
-
-topButton.style.cursor = "pointer";
-
-topButton.style.background = "#D4A762";
-
-topButton.style.color = "#fff";
-
-topButton.style.fontSize = "22px";
-
-topButton.style.display = "none";
-
-topButton.style.alignItems = "center";
-
-topButton.style.justifyContent = "center";
-
-topButton.style.boxShadow = "0 10px 25px rgba(0,0,0,.2)";
-
-topButton.style.zIndex = "999";
-
-
-/* ==========================================
-   CONTACT FORM
-========================================== */
-
-const form = document.querySelector("form");
-
-form.addEventListener("submit", e => {
-
-    e.preventDefault();
-
-    alert("🎉 Thank you for contacting V.Bakeries!\nWe'll get back to you shortly.");
-
-    form.reset();
-
-});
-
-
-/* ==========================================
-   PRODUCT BUTTONS
-========================================== */
-
-document.querySelectorAll(".product-bottom button").forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        alert("✅ Product added to cart.");
-
-    });
-
-});
-
-
-/* ==========================================
-   GALLERY EFFECT
-========================================== */
-
-document.querySelectorAll(".gallery-item img").forEach(img => {
-
-    img.addEventListener("click", () => {
-
-        const popup = window.open("");
-
-        popup.document.write(`
-            <title>V.Bakeries Gallery</title>
-            <img src="${img.src}" 
-            style="width:100%;margin:0;background:#111;">
-        `);
-
-    });
-
-});
-
-
-/* ==========================================
-   ACTIVE NAVIGATION
-========================================== */
-
-const sections = document.querySelectorAll("section");
-
-const navLinks = document.querySelectorAll(".nav-links a");
-
-window.addEventListener("scroll", () => {
-
-    let current = "";
-
-    sections.forEach(section => {
-
-        const sectionTop = section.offsetTop - 120;
-
-        if (pageYOffset >= sectionTop) {
-
-            current = section.getAttribute("id");
-
-        }
-
-    });
-
-    navLinks.forEach(link => {
-
-        link.classList.remove("active");
-
-        if (link.getAttribute("href") == "#" + current) {
-
-            link.classList.add("active");
-
-        }
-
-    });
-
-});
-
-
-/* ==========================================
-   PRELOADER
-========================================== */
-
-window.addEventListener("load", () => {
-
-    document.body.style.opacity = "1";
-
-});
-
-document.body.style.opacity = "0";
-
-document.body.style.transition = ".5s";
-
-
-/* ==========================================
-   CONSOLE MESSAGE
-========================================== */
-
-console.log("🍰 Welcome to V.Bakeries");
-console.log("Developed with ❤️");
-
-const wishlistButtons = document.querySelectorAll(".wishlist-btn");
-
-wishlistButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        button.classList.toggle("active");
-
-        if(button.classList.contains("active")){
-
-            button.innerHTML =
-            '<i class="fa-solid fa-heart"></i>';
+            window.location.href = result.page;
 
         }else{
 
-            button.innerHTML =
-            '<i class="fa-regular fa-heart"></i>';
+            alert("No product found.");
+
+        }
+
+    }
+
+});
+
+}
+
+const slides=document.querySelectorAll(".hero-slider .slide");
+
+let currentSlide=0;
+
+if(slides.length){
+
+setInterval(()=>{
+
+slides[currentSlide].classList.remove("active");
+
+currentSlide++;
+
+if(currentSlide>=slides.length){
+
+currentSlide=0;
+
+}
+
+slides[currentSlide].classList.add("active");
+
+},3500);
+
+}
+
+const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+
+    contactForm.addEventListener("submit", function(e) {
+
+        e.preventDefault();
+
+        const name = document.getElementById("contactName").value;
+        const email = document.getElementById("contactEmail").value;
+        const phone = document.getElementById("contactPhone").value;
+        const message = document.getElementById("contactMessage").value;
+
+        const bakeryPhone = "2349050967182";
+
+        let whatsappMessage =
+`🧁 *NEW CUSTOMER MESSAGE*%0A%0A` +
+`👤 Name: ${name}%0A` +
+`📧 Email: ${email}%0A` +
+`📞 Phone: ${phone}%0A%0A` +
+`💬 Message:%0A${message}`;
+
+        window.open(
+            `https://wa.me/${bakeryPhone}?text=${whatsappMessage}`,
+            "_blank"
+        );
+
+        contactForm.reset();
+
+    });
+
+}
+
+ const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+if (menuToggle && navLinks) {
+
+    menuToggle.addEventListener("click", () => {
+
+        navLinks.classList.toggle("active");
+
+        if (navLinks.classList.contains("active")) {
+            menuToggle.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+        } else {
+            menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        }
+
+    });
+
+}
+
+/* ==========================================
+   MOBILE DROPDOWN (TAP TO OPEN)
+========================================== */
+
+const dropdownToggle = document.querySelector(".dropdown > a");
+const dropdownMenu = document.querySelector(".dropdown-menu");
+
+if (dropdownToggle && dropdownMenu) {
+
+    dropdownToggle.addEventListener("click", (e) => {
+
+        if (window.matchMedia("(max-width:990px)").matches) {
+
+            e.preventDefault();
+
+            dropdownMenu.classList.toggle("active");
+            dropdownToggle.classList.toggle("open");
 
         }
 
     });
 
-});
-
-const modal=document.getElementById("quickView");
-
-const quickButtons=document.querySelectorAll(".quick-view-btn");
-
-const close=document.querySelector(".close-modal");
-
-quickButtons.forEach(button=>{
-
-button.addEventListener("click",()=>{
-
-modal.style.display="flex";
-
-});
-
-});
-
-close.addEventListener("click",()=>{
-
-modal.style.display="none";
-
-});
-
-window.onclick=function(e){
-
-if(e.target==modal){
-
-modal.style.display="none";
-
 }
 
-};
+/* ==========================================
+   TOUCH IMAGE EFFECTS (ZOOM / FADE)
+========================================== */
 
-const qty=document.getElementById("quantity");
+if (window.matchMedia("(hover: none)").matches) {
 
-document.getElementById("plus").onclick=()=>{
+    const touchCards = document.querySelectorAll(
+        ".menu-box, .cake-card, .product-card, .gallery-item"
+    );
 
-qty.value++;
+    touchCards.forEach(card => {
 
-}
+        card.addEventListener("click", (e) => {
 
-document.getElementById("minus").onclick=()=>{
+            const isLink = e.target.closest("a, button");
 
-if(qty.value>1){
+            if (isLink) return;
 
-qty.value--;
+            const alreadyActive = card.classList.contains("active");
 
-}
+            touchCards.forEach(c => c.classList.remove("active"));
+
+            if (!alreadyActive) {
+
+                card.classList.add("active");
+
+            }
+
+        });
+
+    });
+
+    document.addEventListener("click", (e) => {
+
+        if (!e.target.closest(".menu-box, .cake-card, .product-card, .gallery-item")) {
+
+            touchCards.forEach(c => c.classList.remove("active"));
+
+        }
+
+    });
 
 }

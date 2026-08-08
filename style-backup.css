@@ -1,4 +1,4 @@
- /* ===========================
+  /* ===========================
    GOOGLE FONTS & RESET
 =========================== */
 
@@ -10,14 +10,12 @@
 
 html{
     scroll-behavior:smooth;
-    overflow-x:hidden;
 }
 
 body{
     font-family:'Poppins',sans-serif;
     background:#FFF9F3;
     color:#2b1b12;
-    overflow-x:hidden;
 }
 
 img{
@@ -3366,20 +3364,12 @@ opacity:1;
 
     order:-1;
 
-    width:100vw;
-    max-width:100vw;
+    width:100%;
+    max-width:430px;
 
-    margin-left:calc(-50vw + 50%);
+    height:360px;
 
-    aspect-ratio:3/2;
-    height:auto;
-
-}
-
-.hero-image::before{
-
-    display:none;
-
+    margin:auto;
 }
 
 .hero-slider,
@@ -3394,9 +3384,7 @@ opacity:1;
     object-fit:cover;
     object-position:center;
 
-    background:var(--cream);
-
-    border-radius:0;
+    border-radius:20px;
 }
 
 .hero-content{

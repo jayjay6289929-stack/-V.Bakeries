@@ -1,26 +1,42 @@
-// Gallery Lightbox
+ // Gallery Lightbox
 
 const galleryImages = document.querySelectorAll(".gallery-grid img");
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 const closeLightbox = document.querySelector(".close-lightbox");
 
-galleryImages.forEach(img => {
-    img.addEventListener("click", () => {
-        lightbox.style.display = "flex";
-        lightboxImg.src = img.src;
+ if (galleryImages.length && lightbox && lightboxImg) {
+
+    galleryImages.forEach(img => {
+        img.addEventListener("click", () => {
+
+            const card = img.closest(".gallery-item");
+            const isTouch = window.matchMedia("(hover: none)").matches;
+
+            if (isTouch && card && !card.classList.contains("active")) {
+                return;
+            }
+
+            lightbox.style.display = "flex";
+            lightboxImg.src = img.src;
+        });
     });
-});
 
-closeLightbox.addEventListener("click", () => {
-    lightbox.style.display = "none";
-});
+}
 
-lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) {
+ if (closeLightbox && lightbox) {
+
+    closeLightbox.addEventListener("click", () => {
         lightbox.style.display = "none";
-    }
-});
+    });
+
+    lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+            lightbox.style.display = "none";
+        }
+    });
+
+}
 
 // ==========================
 // Scroll Reveal Animation
@@ -62,7 +78,7 @@ window.addEventListener("load",()=>{
 
     setTimeout(()=>{
 
-        document.getElementById("loader").classList.add("hidden");
+        document.getElementById("loader")?.classList.add("hidden");
 
     },1800);
 
@@ -167,35 +183,33 @@ searchResults.style.display="none";
 
 });
 
-}
- 
+searchInput.addEventListener("keydown", function(e){
 
-    searchInput.addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
 
-        if(e.key === "Enter"){
+        e.preventDefault();
 
-            e.preventDefault();
+        const query = searchInput.value.trim().toLowerCase();
 
-            const query = searchInput.value.trim().toLowerCase();
+        const result = products.find(product =>
+            product.name.toLowerCase().includes(query)
+        );
 
-            const result = products.find(product =>
-                query.includes(product.keyword)
-            );
+        if(result){
 
-            if(result){
+            window.location.href = result.page;
 
-                window.location.href = result.page;
+        }else{
 
-            }else{
-
-                alert("No product found.");
-
-            }
+            alert("No product found.");
 
         }
 
-    });
+    }
 
+});
+
+}
 
 const slides=document.querySelectorAll(".hero-slider .slide");
 
@@ -254,23 +268,117 @@ if (contactForm) {
 
 }
 
-const menuToggle = document.getElementById("menuToggle");
+ const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 
-menuToggle.addEventListener("click", () => {
+if (menuToggle && navLinks) {
 
-    navLinks.classList.toggle("active");
+    menuToggle.addEventListener("click", () => {
 
-    if(navLinks.classList.contains("active")){
+        navLinks.classList.toggle("active");
 
-        menuToggle.innerHTML =
-        '<i class="fa-solid fa-xmark"></i>';
+        const isOpen = navLinks.classList.contains("active");
 
-    }else{
+        menuToggle.setAttribute("aria-expanded", isOpen);
 
-        menuToggle.innerHTML =
-        '<i class="fa-solid fa-bars"></i>';
+        if (isOpen) {
+            menuToggle.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+        } else {
+            menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        }
 
-    }
+    });
+
+}
+
+/* ==========================================
+   MOBILE DROPDOWN (TAP TO OPEN)
+========================================== */
+
+const dropdownToggle = document.querySelector(".dropdown > a");
+const dropdownMenu = document.querySelector(".dropdown-menu");
+
+if (dropdownToggle && dropdownMenu) {
+
+    dropdownToggle.addEventListener("click", (e) => {
+
+        if (window.matchMedia("(max-width:990px)").matches) {
+
+            e.preventDefault();
+
+            dropdownMenu.classList.toggle("active");
+            dropdownToggle.classList.toggle("open");
+
+            dropdownToggle.setAttribute(
+                "aria-expanded",
+                dropdownMenu.classList.contains("active")
+            );
+
+        }
+
+    });
+
+}
+
+/* ==========================================
+   TOUCH IMAGE EFFECTS (ZOOM / FADE)
+========================================== */
+
+if (window.matchMedia("(hover: none)").matches) {
+
+    const touchCards = document.querySelectorAll(
+        ".menu-box, .cake-card, .product-card, .gallery-item"
+    );
+
+    touchCards.forEach(card => {
+
+        card.addEventListener("click", (e) => {
+
+            const isLink = e.target.closest("a, button");
+
+            if (isLink) return;
+
+            const alreadyActive = card.classList.contains("active");
+
+            touchCards.forEach(c => c.classList.remove("active"));
+
+            if (!alreadyActive) {
+
+                card.classList.add("active");
+
+            }
+
+        });
+
+    });
+
+    document.addEventListener("click", (e) => {
+
+        if (!e.target.closest(".menu-box, .cake-card, .product-card, .gallery-item")) {
+
+            touchCards.forEach(c => c.classList.remove("active"));
+
+        }
+
+    });
+
+}
+
+/* ==========================================
+   KEYBOARD SUPPORT FOR role="button" ELEMENTS
+========================================== */
+
+document.querySelectorAll('[role="button"]').forEach(el => {
+
+    el.addEventListener("keydown", (e) => {
+
+        if (e.key === "Enter" || e.key === " ") {
+
+            e.preventDefault();
+            el.click();
+
+        }
+
+    });
 
 });

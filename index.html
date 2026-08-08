@@ -63,7 +63,7 @@
         <li><a href="#home">Home</a></li>
 
         <li class="dropdown">
-            <a href="#">Menu <i class="fa-solid fa-chevron-down"></i></a>
+            <a href="#" aria-haspopup="true" aria-expanded="false">Menu <i class="fa-solid fa-chevron-down"></i></a>
 
             <ul class="dropdown-menu">
                 <li><a href="cakes.html">🎂 Cakes</a></li>
@@ -84,12 +84,13 @@
     <div class="nav-actions">
 
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Search products...">
+            <label for="searchInput" class="visually-hidden">Search products</label>
+            <input type="text" id="searchInput" placeholder="Search products..." aria-label="Search products">
             <i class="fa-solid fa-magnifying-glass"></i>
             <div class="search-results" id="searchResults"></div>
         </div>
 
-        <div class="cart-icon">
+        <div class="cart-icon" role="button" tabindex="0" aria-label="View cart">
             <i class="fa-solid fa-cart-shopping"></i>
             <span id="cart-count">0</span>
         </div>
@@ -97,7 +98,7 @@
         <a href="#contact" class="order-btn">Order Now</a>
 
         <!-- Mobile Only -->
-        <div class="menu-toggle" id="menuToggle">
+        <div class="menu-toggle" id="menuToggle" role="button" tabindex="0" aria-label="Toggle menu" aria-expanded="false">
             <i class="fa-solid fa-bars"></i>
         </div>
 
@@ -385,7 +386,7 @@
 
     </div>
 
-</div>
+ </div>
 
        <div class="product-card">
 
@@ -859,7 +860,7 @@
 
 <div class="lightbox" id="lightbox">
 
-    <span class="close-lightbox">x</span>
+    <span class="close-lightbox" role="button" tabindex="0" aria-label="Close image">x</span>
 
     <img id="lightbox-img">
 
@@ -872,7 +873,7 @@
 
         <h2>🛒 Shopping Cart</h2>
 
-        <span id="closeCart">&times;</span>
+        <span id="closeCart" role="button" tabindex="0" aria-label="Close cart">&times;</span>
 
     </div>
 
@@ -988,7 +989,11 @@
 
             <div class="footer-social">
 
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                 <a href="https://wa.me/2349050967182" target="_blank">
+
+                    <i class="fa-brands fa-whatsapp"></i>
+
+                </a>
 
                 <a href="#"><i class="fab fa-instagram"></i></a>
 
