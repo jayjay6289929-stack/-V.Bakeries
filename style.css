@@ -1904,6 +1904,9 @@ transform:translateY(-6px);
 
 .contact-form{
 
+box-sizing:border-box;
+max-width:100%;
+
 background:#fffaf8;
 
 padding:40px;
@@ -1927,6 +1930,10 @@ gap:20px;
 .contact-form input,
 
 .contact-form textarea{
+
+width:100%;
+
+box-sizing:border-box;
 
 padding:18px;
 
