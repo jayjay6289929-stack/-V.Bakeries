@@ -3425,6 +3425,8 @@ opacity:1;
 
 .hero{
 
+    position:relative;
+
     display:flex;
     flex-direction:column;
 
@@ -3445,12 +3447,119 @@ opacity:1;
 
     margin-left:calc(-50vw + 50%);
 
-    aspect-ratio:3/2;
-    height:auto;
+    height:52vh;
+    min-height:340px;
+    max-height:520px;
 
 }
 
 .hero-image::before{
+
+    display:none;
+
+}
+
+.hero-image::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        to bottom,
+        rgba(255,255,255,.95) 0%,
+        rgba(255,255,255,.75) 45%,
+        rgba(255,255,255,.15) 75%,
+        rgba(255,255,255,0) 100%
+    );
+
+    z-index:2;
+    pointer-events:none;
+
+}
+
+.hero-overlay-text{
+
+    position:absolute;
+
+    top:110px;
+    left:0;
+
+    width:100%;
+    height:52vh;
+    min-height:340px;
+    max-height:520px;
+
+    z-index:3;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+
+    gap:6px;
+
+    padding:0 34px;
+
+    text-align:center;
+
+}
+
+.hero-overlay-text .badge{
+
+    font-size:.65rem;
+    padding:6px 14px;
+    margin-bottom:2px;
+
+}
+
+.hero-overlay-text h1{
+
+    font-size:1.2rem;
+    line-height:1.2;
+    margin:0;
+
+    color:var(--text);
+    font-weight:700;
+    text-shadow:none;
+
+}
+
+.hero-overlay-text h1 br{
+
+    display:none;
+
+}
+
+.hero-overlay-text h2{
+
+    font-size:.75rem;
+    font-weight:400;
+    margin:0;
+
+    color:var(--text);
+    opacity:.75;
+    text-shadow:none;
+
+}
+
+.hero-overlay-text .hero-buttons{
+
+    margin-top:8px;
+
+}
+
+.hero-overlay-text .hero-buttons a{
+
+    width:auto;
+    padding:11px 24px;
+    font-size:.8rem;
+
+}
+
+.hero-overlay-text .secondary-btn{
 
     display:none;
 
@@ -3938,8 +4047,6 @@ opacity:1;
     font-size:1.1rem;
 
 }
-
-/* ================= FOOTER ================= */
 
 .footer{
 

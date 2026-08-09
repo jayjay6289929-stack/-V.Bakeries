@@ -10,12 +10,14 @@
 
 html{
     scroll-behavior:smooth;
+    overflow-x:hidden;
 }
 
 body{
     font-family:'Poppins',sans-serif;
     background:#FFF9F3;
     color:#2b1b12;
+    overflow-x:hidden;
 }
 
 img{
@@ -1902,6 +1904,9 @@ transform:translateY(-6px);
 
 .contact-form{
 
+box-sizing:border-box;
+max-width:100%;
+
 background:#fffaf8;
 
 padding:40px;
@@ -1925,6 +1930,10 @@ gap:20px;
 .contact-form input,
 
 .contact-form textarea{
+
+width:100%;
+
+box-sizing:border-box;
 
 padding:18px;
 
@@ -2834,6 +2843,7 @@ flex-shrink:0;
 .checkout-info{
 
 flex:1;
+min-width:0;
 
 }
 
@@ -3172,6 +3182,21 @@ animation:loadingBar 2s ease forwards;
 
 }
 
+.search-toggle{
+
+    display:none;
+
+    font-size:1.3rem;
+
+    color:var(--primary);
+
+    cursor:pointer;
+
+    align-items:center;
+    justify-content:center;
+
+}
+
 
 /* ==========================
    Search Suggestions
@@ -3287,9 +3312,60 @@ opacity:1;
     font-size:1.6rem;
 }
 
-.search-box,
 .order-btn{
     display:none;
+}
+
+.search-toggle{
+    display:flex;
+}
+
+.search-box{
+
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+
+    margin:0;
+
+    max-height:0;
+    overflow:hidden;
+
+    background:#fff;
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+
+    transition:max-height .35s ease;
+
+}
+
+.search-box.active{
+
+    max-height:80px;
+
+}
+
+.search-box input{
+
+    width:100%;
+    padding:18px 45px 18px 20px;
+    border-radius:0;
+    border:none;
+    border-bottom:1px solid #eee;
+
+}
+
+.search-box i{
+
+    right:20px;
+
+}
+
+.search-results{
+
+    top:calc(100% + 1px);
+    border-radius:0;
+
 }
 
 .cart-icon{
@@ -3364,12 +3440,20 @@ opacity:1;
 
     order:-1;
 
-    width:100%;
-    max-width:430px;
+    width:100vw;
+    max-width:100vw;
 
-    height:360px;
+    margin-left:calc(-50vw + 50%);
 
-    margin:auto;
+    aspect-ratio:3/2;
+    height:auto;
+
+}
+
+.hero-image::before{
+
+    display:none;
+
 }
 
 .hero-slider,
@@ -3377,6 +3461,7 @@ opacity:1;
 
     width:100%;
     height:100%;
+    min-height:0;
 }
 
 .hero-slider .slide{
@@ -3384,7 +3469,9 @@ opacity:1;
     object-fit:cover;
     object-position:center;
 
-    border-radius:20px;
+    background:var(--cream);
+
+    border-radius:0;
 }
 
 .hero-content{
@@ -3622,6 +3709,253 @@ opacity:1;
 .dropdown > a.open i{
 
     transform:rotate(180deg);
+
+}
+
+/* ================= CHECKOUT CARD (FIX OVERFLOW) ================= */
+
+.checkout-card{
+
+    gap:14px;
+    padding:16px;
+
+}
+
+.checkout-image{
+
+    width:90px;
+    height:90px;
+
+}
+
+.checkout-info h3{
+
+    font-size:19px;
+
+}
+
+.checkout-desc{
+
+    font-size:13px;
+    margin-bottom:10px;
+
+}
+
+.checkout-price{
+
+    font-size:19px;
+    margin-bottom:10px;
+
+}
+
+.checkout-qty{
+
+    font-size:14px;
+
+}
+
+/* ================= CART SIDEBAR (FIX OVERFLOW) ================= */
+
+.cart-sidebar{
+
+    width:100%;
+    right:-100%;
+
+}
+
+/* ================= CONTACT CARD (FIX OVERFLOW) ================= */
+
+.contact-card{
+
+    gap:14px;
+    padding:18px;
+
+}
+
+.contact-card > div{
+
+    flex:1;
+    min-width:0;
+
+}
+
+.contact-card h3{
+
+    font-size:1.05rem;
+
+}
+
+.contact-card p{
+
+    font-size:.9rem;
+    word-break:break-word;
+
+}
+
+.contact-form{
+
+    padding-bottom:90px;
+
+}
+
+/* ================= SECTION SPACING RHYTHM ================= */
+/* Desktop sections use 100-120px vertical padding, which
+   stacks into huge empty gaps on mobile. Tightened here. */
+
+.menu-section,
+.products-section,
+.signature-cakes,
+.gallery,
+.contact,
+.bakery-story,
+.cakes-about,
+.product-section{
+
+    padding-top:60px;
+    padding-bottom:60px;
+
+}
+
+.section-title{
+
+    margin-bottom:40px;
+
+}
+
+/* ================= PAGE HERO (CATEGORY BANNERS) ================= */
+
+.page-hero{
+
+    min-height:60vh;
+
+}
+
+.page-content h1{
+
+    font-size:2.4rem;
+    line-height:1.15;
+
+}
+
+.page-content p{
+
+    font-size:1rem;
+    line-height:1.7;
+
+}
+
+.page-content span{
+
+    font-size:.75rem;
+    padding:8px 18px;
+
+}
+
+/* ================= SECTION TITLES (used across every page) ================= */
+
+.section-title h2{
+
+    font-size:2.1rem;
+
+}
+
+.section-title p{
+
+    font-size:.95rem;
+    line-height:1.7;
+
+}
+
+/* ================= CATEGORY "ABOUT" BLOCKS ================= */
+
+.cakes-about{
+
+    gap:35px;
+    text-align:center;
+
+}
+
+.cakes-about-text h2{
+
+    font-size:2rem;
+    line-height:1.2;
+
+}
+
+.cakes-about-text p{
+
+    font-size:1rem;
+    line-height:1.75;
+
+}
+
+/* ================= INDIVIDUAL PRODUCT PAGES ================= */
+
+.product-section{
+
+    gap:35px;
+    text-align:center;
+
+}
+
+.product-content h1{
+
+    font-size:2rem;
+    line-height:1.15;
+
+}
+
+.product-content h2{
+
+    font-size:1.4rem;
+    margin-bottom:18px;
+
+}
+
+.product-content p{
+
+    font-size:1rem;
+    line-height:1.8;
+    margin-bottom:25px;
+
+}
+
+.product-content h3{
+
+    font-size:1.3rem;
+    margin:28px 0 14px;
+
+}
+
+.product-content ul li{
+
+    font-size:1rem;
+
+}
+
+.product-rating{
+
+    font-size:1.1rem;
+
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+
+    padding:50px 8% 25px;
+
+}
+
+.footer h3{
+
+    font-size:1.5rem;
+
+}
+
+.footer-container{
+
+    gap:35px;
 
 }
 
