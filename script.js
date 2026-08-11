@@ -39,40 +39,40 @@ const closeLightbox = document.querySelector(".close-lightbox");
 }
 
 // ==========================
-// Scroll Reveal Animation
+// Scroll Reveal Animation (individual elements, staggered)
 // ==========================
 
-const reveals = document.querySelectorAll(
-".hero, .menu-section, .products-section, .bakery-story, .gallery, .contact"
+const revealTargets = document.querySelectorAll(
+    ".menu-box, .product-card, .cake-card, .gallery-item, .contact-card, .section-title"
 );
 
-function revealOnScroll(){
+revealTargets.forEach((el, i) => {
 
-    const trigger =  window.innerHeight * 0.5;
-
-    reveals.forEach(section=>{
-
-        const top = section.getBoundingClientRect().top;
-
-        if(top < trigger){
-
-            section.classList.add("active");
-
-        }
-
-    });
-
-}
-
-reveals.forEach(section=>{
-
-    section.classList.add("reveal");
+    el.classList.add("reveal-item");
+    el.style.transitionDelay = `${(i % 6) * 0.08}s`;
 
 });
 
-window.addEventListener("scroll", revealOnScroll);
+if (revealTargets.length) {
 
-revealOnScroll();
+    const revealObserver = new IntersectionObserver((entries) => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("reveal-active");
+                revealObserver.unobserve(entry.target);
+
+            }
+
+        });
+
+    }, { threshold: 0.15 });
+
+    revealTargets.forEach(el => revealObserver.observe(el));
+
+}
 
 window.addEventListener("load",()=>{
 
@@ -357,6 +357,62 @@ if (dropdownToggle && dropdownMenu) {
         }
 
     });
+
+}
+
+/* ==========================================
+   ANIMATED STAT COUNTERS
+========================================== */
+
+const statNumbers = document.querySelectorAll(".stats h3[data-count]");
+
+if (statNumbers.length) {
+
+    const animateCount = (el) => {
+
+        const target = parseFloat(el.dataset.count);
+        const suffix = el.dataset.suffix || "";
+        const isDecimal = el.dataset.decimal === "true";
+        const duration = 1400;
+        const startTime = performance.now();
+
+        function tick(now) {
+
+            const progress = Math.min((now - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = target * eased;
+
+            el.textContent = (isDecimal ? current.toFixed(1) : Math.floor(current)) + suffix;
+
+            if (progress < 1) {
+                requestAnimationFrame(tick);
+            } else {
+                el.textContent = (isDecimal ? target.toFixed(1) : target) + suffix;
+            }
+
+        }
+
+        requestAnimationFrame(tick);
+
+    };
+
+    const statsObserver = new IntersectionObserver((entries) => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                statNumbers.forEach(animateCount);
+                statsObserver.unobserve(entry.target);
+
+            }
+
+        });
+
+    }, { threshold: 0.4 });
+
+    const statsContainer = document.querySelector(".stats");
+    if (statsContainer) statsObserver.observe(statsContainer);
 
 }
 

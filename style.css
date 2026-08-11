@@ -350,11 +350,16 @@ section[id]{
 
     color:white;
 
+    transition:background .3s ease, transform .3s ease, box-shadow .3s ease;
+
 }
 
-.primary-btn:hover{
+.primary-btn:hover,
+.primary-btn:active{
 
     background:var(--secondary);
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
 
 }
 
@@ -366,11 +371,15 @@ section[id]{
 
 }
 
-.secondary-btn:hover{
+.secondary-btn:hover,
+.secondary-btn:active{
 
     background:var(--primary);
 
     color:white;
+
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
 
 }
 
@@ -2291,6 +2300,22 @@ color:#c59d5f;
     transform:translateY(0);
 }
 
+.reveal-item{
+
+    opacity:0;
+    transform:translateY(35px);
+    transition:opacity .6s cubic-bezier(.25,.8,.25,1),
+               transform .6s cubic-bezier(.25,.8,.25,1);
+
+}
+
+.reveal-item.reveal-active{
+
+    opacity:1;
+    transform:translateY(0);
+
+}
+
 .product-buttons{
 
     display:flex;
@@ -2344,7 +2369,8 @@ color:#c59d5f;
 
 }
 
-.details-btn:hover{
+.details-btn:hover,
+.details-btn:active{
 
     background:#4b2e2e;
 
@@ -2366,7 +2392,8 @@ color:#c59d5f;
 
 }
 
-.cart-btn:hover{
+.cart-btn:hover,
+.cart-btn:active{
 
     transform:translateY(-3px);
 
@@ -4063,6 +4090,113 @@ opacity:1;
 .footer-container{
 
     gap:35px;
+
+}
+
+/* ================= PROFESSIONAL MOBILE FOOTER ================= */
+
+.footer{
+
+    padding:0 6% 25px;
+
+}
+
+.footer-container{
+
+    text-align:center;
+
+}
+
+.footer-column:first-child{
+
+    padding:45px 0 30px;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    margin-bottom:30px;
+
+}
+
+.footer-logo{
+
+    margin-left:auto;
+    margin-right:auto;
+
+}
+
+.footer h4{
+
+    font-size:.8rem;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    font-family:'Poppins',sans-serif;
+
+}
+
+.footer-column:nth-child(2),
+.footer-column:nth-child(3){
+
+    text-align:left;
+
+}
+
+.footer ul li{
+
+    font-size:.92rem;
+
+}
+
+.footer-contact-line{
+
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+
+    font-size:.9rem;
+    margin-bottom:14px;
+
+}
+
+.footer-contact-line i{
+
+    color:#d4a657;
+    font-size:.85rem;
+    margin-top:3px;
+    flex-shrink:0;
+    width:16px;
+
+}
+
+.footer-contact-line a{
+
+    color:#d6d6d6;
+    text-decoration:none;
+    line-height:1.5;
+
+}
+
+.footer-social{
+
+    justify-content:center;
+
+}
+
+.footer-column:last-child{
+
+    grid-column:1 / -1;
+    text-align:center;
+
+}
+
+.footer-hours-title{
+
+    font-size:.8rem;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+
+}
+
+.footer-bottom{
+
+    font-size:.8rem;
 
 }
 
