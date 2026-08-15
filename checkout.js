@@ -8,6 +8,31 @@ const checkoutItems = document.getElementById("checkoutItems");
 const checkoutTotal = document.getElementById("checkoutTotal");
 
 // =========================
+// Send Order to Email (Formspree) - Practice
+// =========================
+
+async function sendToFormspree(name, phone, address, date) {
+
+    const formspreeURL = "https://formspree.io/f/mvkpbgzq";
+
+    const response = await fetch(formspreeURL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            name: name,
+            phone: phone,
+            address: address,
+            deliveryDate: date
+        })
+    });
+
+    return response.ok;
+}
+
+// =========================
 // Display Cart
 // =========================
  
@@ -147,6 +172,7 @@ document.getElementById("checkoutForm").addEventListener("submit", function(e){
     const phone = document.getElementById("customerPhone").value;
     const address = document.getElementById("customerAddress").value;
     const date = document.getElementById("deliveryDate").value;
+    sendToFormspree(name, phone, address, date);
 
     let total = 0;
 
@@ -192,5 +218,7 @@ renderCheckout();
 setTimeout(() => {
     window.location.href = "index.html";
 }, 1000);
+
+
 
 });
